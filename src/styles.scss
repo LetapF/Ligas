@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+.titulo{
+    text-align: center;
+}
+
+.col-4{
+    float: left;
+    width: 25%;
+}
+
+.card p, img{
+    text-align: center;
+    padding-top: 25px;
+    display:block;
+    margin:auto;
+    width: 30vh;
+    height:auto;
+}

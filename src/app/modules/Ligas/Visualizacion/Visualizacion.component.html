@@ -1,0 +1,14 @@
+<div>
+  <div class="titulo">
+    <h1>Lista de ligas</h1>
+  </div>
+  <div class="lista">
+    <div class='col-4' *ngFor="let liga of ligas">
+      <div class='card'>
+        <img src='{{liga["Logo del Equipo"]}}' alt="">
+        <p>{{liga["Nombre del equipo"]}}</p>
+      </div>
+      <nz-divider></nz-divider>
+    </div>
+  </div>
+</div>
