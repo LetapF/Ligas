@@ -10,9 +10,14 @@ export class LigasService {
     
     constructor(private http: HttpClient){ }
 
-    obtenerLigas(){
-        const url = `${environment.apiBase}teams`;
-        return this.http.get(url)
+    obtenerLigas(page){
+        const url = `${environment.apiBase}teams?_page=${page}&_limit=10`;
+        return this.http.get(url, {observe: 'response'})
+    }
+
+    busquedaPorNombre(nombre){
+        const url = `${environment.apiBase}teams?Nombre%20De%20La%20Liga=${nombre}&_page=1&_limit=10`;
+        return this.http.get(url, {observe: 'response'})
     }
 
 }

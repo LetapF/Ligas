@@ -4,7 +4,7 @@
 
 
 nz-header {
-  background: #fff;
+  background: #001529;
   padding: 0;
 }
 
@@ -21,4 +21,21 @@ nz-content {
 
 nz-footer {
   text-align: center;
+}
+
+.header{
+  background-color: #001529;
+}
+
+.header_logo {
+  float: left;
+  text-align: left;
+  margin-left: 3%;
+  margin: 0 2% 0 3%;
+}
+
+.header_search{
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
 }

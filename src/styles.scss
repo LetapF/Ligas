@@ -1,19 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 
-.titulo{
+.center{
     text-align: center;
 }
 
-.col-4{
+.col-5{
     float: left;
-    width: 25%;
+    width: 20%;
 }
 
-.card p, img{
+.card img{
+    text-align: center;
+    display:block;
+    margin:auto;
+    width: 250px;
+    height:250px;
+}
+
+.card p{
     text-align: center;
     padding-top: 25px;
     display:block;
     margin:auto;
-    width: 30vh;
-    height:auto;
+}
+
+.card_buttoms{
+    text-align: center;
+}
+
+.card_buttoms-buttom{
+    margin-left: 10px;
+}
+
+.pagination{
+    padding-top: 45%;
 }

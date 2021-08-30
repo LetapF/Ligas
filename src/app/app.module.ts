@@ -8,12 +8,23 @@ import { HttpClientModule } from '@angular/common/http';
 
 //NG ZORRO
 
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { IconsProviderModule } from './icons-provider.module';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
-//Componentes
+//NG ZORRO LANGUAGE CONFIG
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
+registerLocaleData(es);
+import { NZ_I18N, es_ES } from 'ng-zorro-antd/i18n';
+
+//COMPONENTS
 import { VisualizacionComponent } from './modules/Ligas/Visualizacion/Visualizacion.component';
 
 
@@ -32,8 +43,13 @@ import { VisualizacionComponent } from './modules/Ligas/Visualizacion/Visualizac
     IconsProviderModule,
     NzMenuModule,
     NzDividerModule,
+    NzPaginationModule,
+    NzAutocompleteModule,
+    NzInputModule,
+    NzGridModule,
+    NzModalModule,
   ],
-  providers: [],
+  providers: [{provide: NZ_I18N, useValue: es_ES}],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
