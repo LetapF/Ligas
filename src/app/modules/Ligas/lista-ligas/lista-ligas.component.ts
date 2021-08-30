@@ -3,11 +3,11 @@ import { LigasService } from 'src/app/core/services/ligas/ligas.service';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
-  selector: 'app-Visualizacion',
-  templateUrl: './Visualizacion.component.html',
-  styleUrls: ['./Visualizacion.component.scss']
+  selector: 'app-lista-ligas',
+  templateUrl: './lista-ligas.component.html',
+  styleUrls: ['./lista-ligas.component.scss']
 })
-export class VisualizacionComponent implements OnInit {
+export class ListaLigasComponent implements OnInit {
 
   ligas: [];
   numberOfLigas: number;
@@ -26,7 +26,11 @@ export class VisualizacionComponent implements OnInit {
 
 
   printindex(index){
-    console.log(index)
+    console.log(index) 
+  }
+
+  removeSizeImg(url: string){
+    return url.substring(0, url.indexOf('?'))
   }
 
   changePage(index){
@@ -38,7 +42,7 @@ export class VisualizacionComponent implements OnInit {
   showConfirm(liga): void {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Estas seguro que quieres eliminar este item?',
-      nzContent: 'Eliminaras la Liga: ' + liga["Nombre del equipo"],
+      nzContent: 'Eliminaras la Liga: ' + liga["Nombre De La Liga"],
       nzOnOk: () =>
         new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);

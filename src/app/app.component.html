@@ -7,17 +7,17 @@
 
       <div class="header_search" nz-col [nzXs]="{ span: 12, offset: 1 }" [nzLg]="{ span: 17, offset: 0 }">
         <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-          <input type="text" nz-input placeholder="input search text" />
+          <input (keyup.enter)='searchIn(querySearch)' [(ngModel)]="querySearch" type="text" nz-input placeholder="input search text" />
         </nz-input-group>
         <ng-template #suffixIconButton>
-          <button nz-button nzType="primary" nzSearch nzShape="circle"><i nz-icon nzType="search"></i></button>
+          <button type="button" nz-button nzType="primary" nzSearch (click)='searchIn(querySearch)' nzShape="circle"><i nz-icon nzType="search"></i></button>
         </ng-template>
       </div>
 
       <div class="header_botones" nz-col [nzXs]="{ span: 7, offset: 0 }" [nzLg]="{ span: 4, offset: 0 }">
         <ul nz-menu nzTheme="dark" nzMode="horizontal">
-          <li nz-menu-item nzSelected><a href="/ligas">Ligas</a></li>
-          <li nz-menu-item>Equipos</li>
+          <li nz-menu-item nzSelected><a routerLink="/ligas" routerLinkActive="active">Ligas</a></li>
+          <li nz-menu-item><a routerLink="/equipo" routerLinkActive="active">Equipos</a></li>
           <li nz-menu-item>Jugadores</li>
         </ul>
       </div>

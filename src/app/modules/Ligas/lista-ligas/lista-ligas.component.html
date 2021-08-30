@@ -1,0 +1,18 @@
+<div>
+  <div class="titulo">
+    <h1>Lista de ligas</h1>
+  </div>
+  <div class="lista">
+    <div class='col-5' *ngFor="let liga of ligas; let i = index">
+      <div [routerLink]="['/equipo']" [queryParams]="{l: liga['Identificador']}" routerLinkActive="router-link-active"
+        class='card'>
+        <img src='{{this.removeSizeImg(liga["Logo de la Liga"])}}' alt="">
+        <p>{{liga["Nombre De La Liga"]}}</p>
+      </div>
+      <nz-divider></nz-divider>
+    </div>
+  </div>
+  <nz-pagination *ngIf="numberOfLigas > 10" class="center pagination" [nzPageIndex]="1" [nzTotal]="numberOfLigas"
+    (nzPageIndexChange)="changePage($event)" [nzPageSize]="10">
+  </nz-pagination>
+</div>
