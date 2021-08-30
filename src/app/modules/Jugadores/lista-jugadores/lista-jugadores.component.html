@@ -3,7 +3,7 @@
     <h1>Lista de equipos</h1>
   </div>
   <div class="lista">
-    <div class='col-5' *ngFor="let equipo of equipos; let i = index">
+    <div class='col-5' *ngFor="let jugador of jugadores; let i = index">
       <div class='card' (click)=printindex(i)>
         <img src='{{equipo["Avatar"]}}' alt="">
         <p>{{equipo["Nombre del Jugador"]}}</p>
