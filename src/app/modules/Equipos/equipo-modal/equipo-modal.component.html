@@ -1,0 +1,20 @@
+<div>
+  <div class="titulo">
+    <div class="titulo-center">
+      <h1>{{titulo}}</h1>
+    </div>
+  </div>
+  <div class="image">
+    <img src='{{equipo["Logo del Equipo"]}}' alt="">
+  </div>
+  <div class="input-secction">
+    <nz-input-group nzCompact [nzSize]="'large'">
+      <input type="text" nz-input  [ngModel] = 'equipo["Nombre del equipo"]' (ngModelChange)= 'equipo["Nombre del equipo"] = $event'/>
+      <input type="text" nz-input  [ngModel] = 'equipo["Logo del Equipo"]' (ngModelChange)= 'equipo["Logo del Equipo"]  = $event'/>
+      <nz-select ngDefaultControl nzPlaceHolder="liga" (ngModelChange)="equipo['Liga'] = $event" [ngModel]="equipo['Liga']">
+        <nz-option *ngFor="let liga of ligas" [nzLabel]='liga["Nombre De La Liga"]' [nzValue]='liga.Identificador'></nz-option>
+      </nz-select>
+    </nz-input-group>
+    <button type="button" (click)="actualizarCrearEquipo()">{{boton}}</button>
+  </div>
+</div>

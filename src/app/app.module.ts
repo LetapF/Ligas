@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatDialogModule } from '@angular/material/dialog';
 //NG ZORRO
 
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
@@ -19,6 +19,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 //NG ZORRO LANGUAGE CONFIG
 import { registerLocaleData } from '@angular/common';
@@ -30,12 +31,18 @@ import { NZ_I18N, es_ES } from 'ng-zorro-antd/i18n';
 
 import { ListaLigasComponent } from './modules/Ligas/lista-ligas/lista-ligas.component';
 import { ListaEquiposComponent } from './modules/Equipos/lista-equipos/lista-equipos.component';
+import { ListaJugadoresComponent } from './modules/Jugadores/lista-jugadores/lista-jugadores.component';
+import { EquipoModalComponent } from './modules/Equipos/equipo-modal/equipo-modal.component';
+import { JugadorModalComponent } from './modules/Jugadores/jugador-modal/jugador-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaLigasComponent,
     ListaEquiposComponent,
+    ListaJugadoresComponent,
+    EquipoModalComponent,
+    JugadorModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +61,8 @@ import { ListaEquiposComponent } from './modules/Equipos/lista-equipos/lista-equ
     NzModalModule,
     NzResultModule,
     NzNotificationModule,
+    MatDialogModule,
+    NzSelectModule,
     
   ],
   providers: [{provide: NZ_I18N, useValue: es_ES}],

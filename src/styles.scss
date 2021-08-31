@@ -18,6 +18,14 @@
     height:250px;
 }
 
+.image{
+    text-align: center;
+    display:block;
+    margin:auto;
+    width: 250px;
+    height:250px;
+}
+
 .card p{
     text-align: center;
     padding-top: 25px;
@@ -37,3 +45,5 @@
     padding-top: 45%;
     text-align: center;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,17 +1,22 @@
 <div>
   <div class="titulo">
-    <h1>Lista de equipos</h1>
+    <div class="titulo-center">
+      <h1>{{titulo}}</h1>
+    </div>
+    <div class="titulo-addButton">
+      <button (click) = 'openDialogCreate()' *ngIf='numberOfJugadores > 0'><i nz-icon nzType="plus" nzTheme="outline"></i></button>
+    </div>
   </div>
   <div class="lista">
     <div class='col-5' *ngFor="let jugador of jugadores; let i = index">
-      <div class='card' (click)=printindex(i)>
-        <img src='{{equipo["Avatar"]}}' alt="">
-        <p>{{equipo["Nombre del Jugador"]}}</p>
+      <div class='card'>
+        <img src='{{jugador.Avatar}}' alt="">
+        <p>{{jugador["Nombre del Jugador"]}}</p>
         <div class="card_buttoms">
-          <button type="button" (click)="showConfirm(equipo)" class="card_buttoms-buttom">
+          <button type="button" (click)="showConfirmDelete(jugador,i)" class="card_buttoms-buttom">
             <i nz-icon nzType="delete" nzTheme="outline"></i>
           </button>
-          <button type="button" class="card_buttoms-buttom">
+          <button type="button" (click)="openDialogUpdate(jugador)" class="card_buttoms-buttom">
             <i nz-icon nzType="edit" nzTheme="outline"></i>
           </button>
         </div>
@@ -19,7 +24,9 @@
       <nz-divider></nz-divider>
     </div>
   </div>
-  <nz-pagination *ngIf="numberOfjugadores > 10" class="center pagination" [nzPageIndex]="1" [nzTotal]="numberOfjugadores"
+  <nz-pagination *ngIf="numberOfJugadores > 10" class="center pagination" [nzPageIndex]="1" [nzTotal]="numberOfJugadores"
     (nzPageIndexChange)="changePage($event)" [nzPageSize]="10">
   </nz-pagination>
+  <nz-result *ngIf="numberOfJugadores == 0" nzStatus="info" nzTitle="No se encontraron resultados"></nz-result>
+
 </div>

@@ -4,6 +4,11 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { EquiposService } from 'src/app/core/services/equipos/equipos.service';
 import { LigasService } from 'src/app/core/services/ligas/ligas.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { Equipo } from 'src/app/shared/models/equipo';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Jugador } from 'src/app/shared/models/jugador';
+import { EquipoModalComponent } from '../equipo-modal/equipo-modal.component';
+import { Liga } from 'src/app/shared/models/liga';
 
 @Component({
   selector: 'app-lista-equipos',
@@ -13,8 +18,8 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class ListaEquiposComponent implements OnInit {
 
 
-  titulo: string;
-  equipos: [];
+  titulo: string = 'Lista de equipos';
+  equipos: Equipo[];
   numberOfEquipos: number;
   index: number;
   confirmModal: NzModalRef;
@@ -25,7 +30,8 @@ export class ListaEquiposComponent implements OnInit {
     private modal: NzModalService,
     private route: ActivatedRoute,
     private ligaService: LigasService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -34,15 +40,14 @@ export class ListaEquiposComponent implements OnInit {
         if (Object.keys(params).includes('s')) {
           this.searchByName(params['s'])
         } else{
-          this.ligaService.getnameByID(params['l']).subscribe(res =>{
-            console.log(res[0])
-            this.titulo='Equipos de la liga: ' + res[0]["Nombre De La Liga"]
+          this.ligaService.getnameByID(params['l']).subscribe((res : Liga) =>{
+            console.log(res)
+            this.titulo='Equipos de la liga: ' + res[0]['Nombre De La Liga']
           })
           this.searchByLiga(params['l'])
         }
       }
       else {
-        this.titulo = 'Lista de equipos'
         this.loadData()
       }
     })
@@ -55,12 +60,12 @@ export class ListaEquiposComponent implements OnInit {
   }
 
   showConfirmDelete(equipo,index): void {
-    console.log(index)
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Estas seguro que quieres eliminar este item?',
       nzContent: 'Eliminaras el equipo: ' + equipo["Nombre del equipo"],
       nzOnOk: () => {
         let eliminado = this.equipos.splice(index, 1)[0]
+        this.numberOfEquipos = this.numberOfEquipos - 1
         //this.equipoService.eliminarEquipo(eliminado['id'])
         this.notification.create(
           'success',
@@ -70,6 +75,30 @@ export class ListaEquiposComponent implements OnInit {
       }
     });
   }
+
+
+  openDialogCreate(){
+    const dialog_config = new MatDialogConfig();
+    dialog_config.disableClose = false;
+    dialog_config.autoFocus = true;
+    dialog_config.width = '60%';
+    dialog_config.height = '80%';
+    dialog_config.data =  {res: new Equipo}
+    this.dialog.open(EquipoModalComponent, dialog_config);
+
+  }
+
+  openDialogUpdate(equipo: Equipo){
+    const dialog_config = new MatDialogConfig();
+    dialog_config.disableClose = false;
+    dialog_config.autoFocus = true;
+    dialog_config.width = '60%';
+    dialog_config.height = '80%';
+    dialog_config.data =  {res: equipo}
+    this.dialog.open(EquipoModalComponent, dialog_config);
+
+  }
+
 
   searchByLiga(liga){
     this.equipoService.busquedaPorliga(liga).subscribe((res: any) => {
@@ -83,8 +112,6 @@ export class ListaEquiposComponent implements OnInit {
       this.numberOfEquipos = res.headers.get("x-total-count")
       this.equipos = res.body;
     }, error => { })
-
-    console.log(this.numberOfEquipos)
   }
 
   loadData() {

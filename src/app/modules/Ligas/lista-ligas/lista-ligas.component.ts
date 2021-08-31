@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LigasService } from 'src/app/core/services/ligas/ligas.service';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { Liga } from 'src/app/shared/models/liga';
 
 @Component({
   selector: 'app-lista-ligas',
@@ -9,7 +10,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 })
 export class ListaLigasComponent implements OnInit {
 
-  ligas: [];
+  ligas: Liga[];
   numberOfLigas: number;
   index:number;
   confirmModal: NzModalRef;
@@ -24,11 +25,6 @@ export class ListaLigasComponent implements OnInit {
     this.loadData()
   }
 
-
-  printindex(index){
-    console.log(index) 
-  }
-
   removeSizeImg(url: string){
     return url.substring(0, url.indexOf('?'))
   }
@@ -39,18 +35,16 @@ export class ListaLigasComponent implements OnInit {
     }, error => {})
   }
 
-  showConfirm(liga): void {
+  showConfirm(liga:Liga): void {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Estas seguro que quieres eliminar este item?',
-      nzContent: 'Eliminaras la Liga: ' + liga["Nombre De La Liga"],
+      nzContent: 'Eliminaras la Liga: ' + liga['Logo de la Liga'],
       nzOnOk: () =>
         new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
         }).catch(() => console.log('Oops errors!'))
     });
   }
-
-
 
   loadData(){
     this.ligasService.obtenerLigas(1).subscribe((res: any) => {

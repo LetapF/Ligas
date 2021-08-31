@@ -1,17 +1,25 @@
 <div>
   <div class="titulo">
-    <h1>{{titulo}}</h1>
+    <div class="titulo-center">
+      <h1>{{titulo}}</h1>
+    </div>
+    <div class="titulo-addButton">
+      <button (click)='openDialogCreate()' *ngIf="numberOfEquipos > 0"><i nz-icon nzType="plus"
+          nzTheme="outline"></i></button>
+    </div>
   </div>
   <div class="lista">
     <div class='col-5' *ngFor="let equipo of equipos; let i = index">
       <div class='card'>
-        <img src='{{equipo["Logo del Equipo"]}}' alt="">
-        <p>{{equipo["Nombre del equipo"]}}</p>
+        <div [routerLink]="['/jugadores']" [queryParams]="{l: equipo.id}" >
+          <img src='{{equipo["Logo del Equipo"]}}' alt="">
+          <p>{{equipo["Nombre del equipo"]}}</p>
+        </div>
         <div class="card_buttoms">
           <button type="button" (click)="showConfirmDelete(equipo,i)" class="card_buttoms-buttom">
             <i nz-icon nzType="delete" nzTheme="outline"></i>
           </button>
-          <button type="button" class="card_buttoms-buttom">
+          <button type="button" (click)="openDialogUpdate(equipo)" class="card_buttoms-buttom">
             <i nz-icon nzType="edit" nzTheme="outline"></i>
           </button>
         </div>

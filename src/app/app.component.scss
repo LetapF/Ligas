@@ -23,6 +23,10 @@ nz-footer {
   text-align: center;
 }
 
+::ng-deep nz-select {
+  width: 200px;
+}
+
 .header{
   background-color: #001529;
 }
